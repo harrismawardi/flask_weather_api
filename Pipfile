@@ -9,10 +9,14 @@ flask-cors = "*"
 waitress = "*"
 requests = "*"
 flask-pymongo = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [dev-packages]
 
 [scripts]
+test = "pytest ."
+coverage = "pytest --cov-report term-missing --cov=."
 start = "waitress-serve --port=8080 app:app"
 
 [requires]

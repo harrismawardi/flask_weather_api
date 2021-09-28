@@ -17,6 +17,11 @@ def get_user_information():
     city = input('what city do you want?')
     print(weather(country, state, city))
 
+def data_request(country, state, city):
+    url = f"https://api.airvisual.com/v2/city?city={city}&country={country}&state={state}&key=4374ac90-b6ff-4b8c-a86e-809564970414"
+    resp = requests.get(url)
+    return resp.json()
+
 
 @app.route('/')
 def hello_world():
@@ -24,10 +29,7 @@ def hello_world():
 
 @app.route('/weather/<string:country>/<string:state>/<string:city>')
 def weather(country, state, city):
-    print(country, state, city)
-    url = f"https://api.airvisual.com/v2/city?city={city}&country={country}&state={state}&key=4374ac90-b6ff-4b8c-a86e-809564970414"
-    resp = requests.get(url)
-    data = resp.json()
+    data = data_request(country, state, city)
     weather_data = Weather(data["data"]["current"])
     weather_json = json.dumps(weather_data.__dict__)
     return weather_json
