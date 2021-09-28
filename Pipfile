@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-cors = "*"
+waitress = "*"
+requests = "*"
+flask-pymongo = "*"
+
+[dev-packages]
+
+[scripts]
+start = "waitress-serve --port=8080 app:app"
+
+[requires]
+python_version = "3.9"
